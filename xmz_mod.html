@@ -1,0 +1,76 @@
+<head>
+  <title>Gasmesszentrale</title>
+</head>
+
+<body>
+  {{> pageHeader}}
+
+  {{> sensorView}}
+
+  {{> sensorForm}}
+</body>
+
+
+<template name="sensorView">
+{{#each sensors}}
+{{> sensor}}
+{{/each}}
+</template>
+
+<template name="pageHeader">
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="RA-GAS" src="...">
+      </a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a class="btn btn-default btn-sm" href="#">
+          <i class="fa fa-cog"></i> Einstellungen</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</template>
+
+
+<template name="sensor">
+<div class="sensors">
+  <h1>{{name}}</h1>
+  <h2>{{description}}</h2>
+  <p class="value">{{value}}&nbsp;<span class="si">{{si}}</span></p>
+
+  <a class="btn btn-danger remove" href="#">
+    <i class="fa fa-trash-o fa-lg"></i> Sensor löschen</a>
+</div>
+</template>
+
+
+<template name="sensorForm">
+<form name="sensorForm">
+  <p>
+    <label>Name:</label>
+    <input type="text" name="name">
+  </p>
+
+  <p>
+    <label>Beschreibung:</label>
+    <input type="text" name="description">
+  </p>
+
+  <p>
+    <label>SI Einheit</label>
+    <select name="si">
+      <option value="ppm">ppm</option>
+      <option value="Vol % UEG">Vol % UEG</option>
+    </select>
+  </p>
+
+  <p>
+    <input type="submit" value="Speichern">
+  </p>
+</form>
+</template>
