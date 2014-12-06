@@ -3,18 +3,22 @@
 </head>
 
 <body>
+  <div class="container">
+
   {{> pageHeader}}
 
   {{> sensorView}}
 
-  {{> sensorForm}}
+  </div>
 </body>
 
 
 <template name="sensorView">
-{{#each sensors}}
-{{> sensor}}
-{{/each}}
+<div class="owl-carousel">
+  {{#each sensors}}
+  {{> sensor}}
+  {{/each}}
+</div>
 </template>
 
 <template name="pageHeader">
@@ -38,7 +42,7 @@
 
 
 <template name="sensor">
-<div class="sensors">
+<div class="sensor">
   <h1>{{name}}</h1>
   <h2>{{description}}</h2>
   <p class="value">{{value}}&nbsp;<span class="si">{{si}}</span></p>
@@ -51,26 +55,52 @@
 
 <template name="sensorForm">
 <form name="sensorForm">
-  <p>
-    <label>Name:</label>
-    <input type="text" name="name">
-  </p>
+  <fieldset>
 
-  <p>
-    <label>Beschreibung:</label>
-    <input type="text" name="description">
-  </p>
+    <!-- Form Name -->
+    <legend>Sensoren Konfiguration</legend>
 
-  <p>
-    <label>SI Einheit</label>
-    <select name="si">
-      <option value="ppm">ppm</option>
-      <option value="Vol % UEG">Vol % UEG</option>
-    </select>
-  </p>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="sensorName">Name Sensor</label>
+      <div class="col-md-8">
+        <input id="sensorName" name="sensorName" placeholder="Name des Sensors" class="form-control input-md" type="text">
+        <span class="help-block">Bitte geben Sie den Namen des Sensors ein</span>
+      </div>
+    </div>
 
-  <p>
-    <input type="submit" value="Speichern">
-  </p>
+    <!-- Textarea -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="sensorDescription">Beschreibung</label>
+      <div class="col-md-8">
+        <textarea class="form-control" id="sensorDescription" name="sensorDescription"></textarea>
+        <span class="help-block">Kurze Beschreibung des Sensors (z.B. Standort)</span>
+      </div>
+    </div>
+
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="sensorSi">SI Einheit</label>
+      <div class="col-md-8">
+        <select id="sensorSi" name="sensorSi" class="form-control">
+          <option value="ppm">ppm</option>
+          <option value="%">%</option>
+          <option value="UEG">UEG</option>
+        </select>
+        <span class="help-block">SI Einheit des Sensors</span>
+      </div>
+    </div>
+
+    <!-- Button (Double) -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="save"></label>
+      <div class="col-md-8">
+        <button id="save" name="save" class="btn btn-success">Speichern</button>
+        <button id="cancel" name="cancel" class="btn btn-danger">Abbrechen</button>
+      </div>
+    </div>
+
+  </fieldset>
 </form>
 </template>
+

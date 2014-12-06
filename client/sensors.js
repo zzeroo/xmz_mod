@@ -1,3 +1,5 @@
+
+
 Template.sensorView.helpers({
   'sensors': function() {
     return Sensors.find().fetch();
@@ -7,19 +9,27 @@ Template.sensorView.helpers({
 Template.sensorView.events({
 });
 
+Template.sensor.rendered = function() {
+  $('.owl-carousel').owlCarousel({
+    items: 2,
+    loop: true,
+    dots: true
+  });
+};
+
 Template.sensor.events({
   'click .remove': function() {
     Sensors.remove(this._id);
-  }
+  },
 });
 
 Template.sensorForm.events({
   'submit form': function(event) {
     event.preventDefault();
-    var sensorName = event.target.name.value;
-    var sensorDescription = event.target.description.value;
+    var sensorName = event.target.sensorName.value;
+    var sensorDescription = event.target.sensorDescription.value;
     var sensorValue = 0;
-    var sensorSi = event.target.si.value;
+    var sensorSi = event.target.sensorSi.value;
     Sensors.insert({
       name: sensorName,
       description: sensorDescription,
