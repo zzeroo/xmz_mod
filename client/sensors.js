@@ -6,6 +6,12 @@ Template.sensorView.helpers({
   },
 });
 
+Template.sensorList.helpers({
+  'sensors': function() {
+    return Sensors.find().fetch();
+  },
+});
+
 Template.sensorView.events({
 });
 
@@ -17,7 +23,7 @@ Template.sensor.rendered = function() {
   });
 };
 
-Template.sensor.events({
+Template.sensorList.events({
   'click .remove': function() {
     Sensors.remove(this._id);
   },
@@ -36,5 +42,6 @@ Template.sensorForm.events({
       value: parseInt(sensorValue),
       si: sensorSi
     });
+    Router.go('/');
   }
 })

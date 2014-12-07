@@ -3,15 +3,12 @@
 </head>
 
 <body>
-  <div class="container">
-
   {{> pageHeader}}
-
-  {{> sensorView}}
-
+  <div class="container">
+    {{! Render the router into this div instead of the body}}
+    {{> Router}}
   </div>
 </body>
-
 
 <template name="sensorView">
 <div class="owl-carousel">
@@ -21,15 +18,51 @@
 </div>
 </template>
 
+<!-- List of sensors with administrations links -->
+<template name="sensorList">
+<div>
+  {{#each sensors}}
+  {{> sensorWithAdmin}}
+  {{/each}}
+</div>
+</template>
+
+<template name="sensor">
+<div class="sensor">
+  <h1>{{name}}</h1>
+  <h2>{{description}}</h2>
+  <p class="value">{{value}}&nbsp;<span class="si">{{si}}</span></p>
+</div>
+</template>
+
+<template name="sensorWithAdmin">
+<div class="sensor">
+  <h1>{{name}}</h1>
+  <h2>{{description}}</h2>
+  <p class="value">{{value}}&nbsp;<span class="si">{{si}}</span></p>
+
+  <a class="btn btn-danger remove" href="#">
+    <i class="fa fa-trash-o fa-lg"></i> Sensor löschen</a>
+</div>
+</template>
+
 <template name="pageHeader">
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img alt="RA-GAS" src="...">
       </a>
     </div>
 
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/newSensor">Neuen Sensor anlegen</a>
+      </li>
+      <li>
+        <a href="/sensors">Sensoren konfigurieren</a>
+      </li>
+    </ul>
     <ul class="nav navbar-nav navbar-right">
       <li>
         <a class="btn btn-default btn-sm" href="#">
@@ -40,17 +73,6 @@
 </nav>
 </template>
 
-
-<template name="sensor">
-<div class="sensor">
-  <h1>{{name}}</h1>
-  <h2>{{description}}</h2>
-  <p class="value">{{value}}&nbsp;<span class="si">{{si}}</span></p>
-
-  <a class="btn btn-danger remove" href="#">
-    <i class="fa fa-trash-o fa-lg"></i> Sensor löschen</a>
-</div>
-</template>
 
 
 <template name="sensorForm">
