@@ -10,4 +10,5 @@ fortawesome:fontawesome
 nemo64:bootstrap
 less
 jquery
+iron:router
 
