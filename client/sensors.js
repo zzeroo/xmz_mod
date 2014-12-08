@@ -15,13 +15,26 @@ Template.sensorList.helpers({
 Template.sensorView.events({
 });
 
+/** Render the owlCarousel */
 Template.sensor.rendered = function() {
   $('.owl-carousel').owlCarousel({
     items: 2,
     loop: true,
     dots: true
   });
+
+  // The var owl stored the owl instance used for custom nav events and so on
+  var owl = $('.owl-carousel').data('owlCarousel');
+
+   // Custom Navigation Events
+  $(".next").click(function(){
+    owl.next();
+  })
+  $(".prev").click(function(){
+    owl.prev();
+  })
 };
+
 
 Template.sensorList.events({
   'click .remove': function() {

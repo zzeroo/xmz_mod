@@ -4,17 +4,31 @@
 
 <body>
   {{> pageHeader}}
-  <div class="container">
+  <div class="container-fluid">
     {{! Render the router into this div instead of the body}}
     {{> Router}}
   </div>
 </body>
 
 <template name="sensorView">
-<div class="owl-carousel">
-  {{#each sensors}}
-  {{> sensor}}
-  {{/each}}
+<div class="row">
+  <div class="col-md-1">
+    <div class="customNavigation">
+      <a class="btn btn-default prev" style="height: 300px; width: 80px">Previous</a>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="owl-carousel">
+      {{#each sensors}}
+      {{> sensor}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="col-md-1">
+    <div class="customNavigation">
+      <a class="btn btn-default next" style="height: 300px; width: 80px">Next</a>
+    </div>
+  </div>
 </div>
 </template>
 
